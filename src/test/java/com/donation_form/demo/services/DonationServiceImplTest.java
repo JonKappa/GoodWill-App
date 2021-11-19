@@ -18,6 +18,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doReturn;
 
 @ExtendWith(SpringExtension.class)
@@ -44,23 +45,29 @@ class DonationServiceImplTest {
         donation2.setId(2);
     }
 
-    @Test
-    void getDonationsByPhoneNumberTestSuccess() throws DonationNotFoundException {
-        doReturn(Optional.of(Arrays.asList(donation, donation2))).when(repo).findByPhoneNumber("5551234567");
-
-        List<Donation> expectedDonations = new ArrayList<>();
-        expectedDonations.add(donation);
-        expectedDonations.add(donation2);
-
-        List<Donation> actualDonations = service.getByPhoneNumber("5551234567");
-
-
-        Assertions.assertEquals(expectedDonations, actualDonations);
-
-    }
+//    @Test
+//    void getDonationsByPhoneNumberTestSuccess() throws DonationNotFoundException {
+//        doReturn(Optional.of(Arrays.asList(donation, donation2))).when(repo).findByPhoneNumber("5551234567");
+//
+//        List<Donation> expectedDonations = new ArrayList<>();
+//        expectedDonations.add(donation);
+//        expectedDonations.add(donation2);
+//
+//        List<Donation> actualDonations = service.getByPhoneNumber("5551234567");
+//
+//
+//        Assertions.assertEquals(expectedDonations, actualDonations);
+//
+//    }
 
     @Test
     void create() {
+        doReturn(donation).when(repo).save(any());
+
+        Donation savedDonation = service.create(donation);
+
+        Assertions.assertNotNull(savedDonation, "donation should not be null");
+        Assertions.assertEquals(donation, savedDonation);
     }
 
     @Test

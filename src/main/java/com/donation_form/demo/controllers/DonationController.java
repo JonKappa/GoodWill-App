@@ -8,9 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,19 +23,19 @@ public class DonationController {
         this.donationService = donationService;
     }
 
-    @GetMapping("/{phoneNumber}")
-    public ResponseEntity<List<Donation>> getDonationByPhoneNumber(@PathVariable String phoneNumber) {
-        try {
-            List<Donation> donations = donationService.getByPhoneNumber(phoneNumber);
-            ResponseEntity<List<Donation>> response = new ResponseEntity<>(donations, HttpStatus.OK);
-            return response;
-        }
-        catch (DonationNotFoundException e) {
-            return ResponseEntity
-                    .status(HttpStatus.NOT_FOUND)
-                    .build();
-        }
-    }
+//    @GetMapping("/{phoneNumber}")
+//    public ResponseEntity<List<Donation>> getDonationByPhoneNumber(@PathVariable String phoneNumber) {
+//        try {
+//            List<Donation> donations = donationService.getByPhoneNumber(phoneNumber);
+//            ResponseEntity<List<Donation>> response = new ResponseEntity<>(donations, HttpStatus.OK);
+//            return response;
+//        }
+//        catch (DonationNotFoundException e) {
+//            return ResponseEntity
+//                    .status(HttpStatus.NOT_FOUND)
+//                    .build();
+//        }
+//    }
 
     @GetMapping("/{id}")
     public ResponseEntity<Donation> getDonationById(@PathVariable Integer id) {
@@ -51,6 +49,15 @@ public class DonationController {
                     .status(HttpStatus.NOT_FOUND)
                     .build();
         }
+
+    }
+
+    @PostMapping("/donate")
+    public ResponseEntity<Donation> postDonation(@RequestBody Donation donation) {
+        Donation savedDonation = donationService.create(donation);
+        logger.info("{}",savedDonation.getId());
+        ResponseEntity<Donation> response = new ResponseEntity<>(savedDonation, HttpStatus.CREATED);
+        return response;
 
     }
 

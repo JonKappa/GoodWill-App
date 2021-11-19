@@ -7,8 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,19 +22,20 @@ public class DonationServiceImpl implements DonationService {
     }
 
 
-    @Override
-    public List<Donation> getByPhoneNumber(String phoneNumber) throws DonationNotFoundException {
-        if (phoneNumber.contains("-")) {
-            phoneNumber = phoneNumber.replaceAll("-", "");
-        }
-        Optional<List<Donation>> donations = repo.findByPhoneNumber(phoneNumber);
-
-        if (donations.isEmpty()) {
-            logger.error("donation could not be retrieved because phoneNumber {} does not exist", phoneNumber);
-            throw new DonationNotFoundException();
-        }
-        return donations.get();
-    }
+//    @Override
+//    public List<Donation> getByPhoneNumber(String phoneNumber) throws DonationNotFoundException {
+////        if (phoneNumber.contains("-")) {
+////            phoneNumber = phoneNumber.replaceAll("-", "");
+////        }
+////        Optional<List<Donation>> donations = repo.findByPhoneNumber(phoneNumber);
+////
+////        if (donations.isEmpty()) {
+////            logger.error("donation could not be retrieved because phoneNumber {} does not exist", phoneNumber);
+////            throw new DonationNotFoundException();
+////        }
+////        return donations.get();
+//        return  null;
+//    }
 
     @Override
     public Donation create(Donation donation) {

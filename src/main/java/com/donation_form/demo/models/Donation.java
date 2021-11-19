@@ -18,8 +18,6 @@ public class Donation {
     @Temporal(TemporalType.TIMESTAMP)
     private Date created;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updated;
 
     private String streetAddress;
     private String city;
@@ -80,7 +78,6 @@ public class Donation {
     protected void onCreate() {
         Date date = new Date();
         created = date;
-        updated = date;
     }
 
     public Date getCreated() {
@@ -89,13 +86,5 @@ public class Donation {
 
     public void setCreated(Date created) {
         this.created = created;
-    }
-
-    public Date getUpdated() {
-        return updated;
-    }
-
-    public void setUpdated(Date updated) {
-        this.updated = updated;
     }
 }
