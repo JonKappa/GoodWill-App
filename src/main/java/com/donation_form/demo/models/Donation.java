@@ -12,15 +12,19 @@ public class Donation {
     private Integer  id;
 
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "donor_phoneNumber")
     private Donor donor;
 
-
+    @Column(name = "date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date created;
 
 
+    @Column(name = "streetAddress")
     private String streetAddress;
+    @Column(name = "city")
     private String city;
+    @Column(name = "zipCode")
     Integer zipCode;
 
     public Donation() {

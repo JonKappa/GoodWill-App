@@ -10,11 +10,16 @@ public class Donor {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Integer id;
 
+    @Column(name = "firstName")
     String firstName;
+    @Column(name = "lastName")
     String lastName;
+    @Column(name = "phoneNumber")
     String phoneNumber;
+    @Column(name = "email")
     String email;
 
+    public Donor(){}
 
 
     public Donor(String firstName, String lastName, String phoneNumber, String email) {

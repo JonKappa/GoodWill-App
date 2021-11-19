@@ -23,21 +23,21 @@ public class DonationController {
         this.donationService = donationService;
     }
 
-//    @GetMapping("/{phoneNumber}")
-//    public ResponseEntity<List<Donation>> getDonationByPhoneNumber(@PathVariable String phoneNumber) {
-//        try {
-//            List<Donation> donations = donationService.getByPhoneNumber(phoneNumber);
-//            ResponseEntity<List<Donation>> response = new ResponseEntity<>(donations, HttpStatus.OK);
-//            return response;
-//        }
-//        catch (DonationNotFoundException e) {
-//            return ResponseEntity
-//                    .status(HttpStatus.NOT_FOUND)
-//                    .build();
-//        }
-//    }
+    @GetMapping("/phoneNumber/{phoneNumber}")
+    public ResponseEntity<List<Donation>> getDonationByPhoneNumber(@PathVariable String phoneNumber) {
+        try {
+            List<Donation> donations = donationService.findByDonorPhoneNumber(phoneNumber);
+            ResponseEntity<List<Donation>> response = new ResponseEntity<>(donations, HttpStatus.OK);
+            return response;
+        }
+        catch (DonationNotFoundException e) {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .build();
+        }
+    }
 
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     public ResponseEntity<Donation> getDonationById(@PathVariable Integer id) {
         try {
             Donation donation = donationService.getById(id);

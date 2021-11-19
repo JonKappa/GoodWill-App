@@ -10,5 +10,6 @@ import java.util.List;
 
 @Repository
 public interface DonationRepo extends JpaRepository<Donation, Integer> {
-//    List<Donation> findByPhoneNumber(String phoneNumber) throws DonationNotFoundException;
+    List<Donation> findByDonorPhoneNumber(String phoneNumber) throws DonationNotFoundException;
+
 }

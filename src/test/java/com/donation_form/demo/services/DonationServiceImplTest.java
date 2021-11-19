@@ -45,20 +45,20 @@ class DonationServiceImplTest {
         donation2.setId(2);
     }
 
-//    @Test
-//    void getDonationsByPhoneNumberTestSuccess() throws DonationNotFoundException {
-//        doReturn(Optional.of(Arrays.asList(donation, donation2))).when(repo).findByPhoneNumber("5551234567");
-//
-//        List<Donation> expectedDonations = new ArrayList<>();
-//        expectedDonations.add(donation);
-//        expectedDonations.add(donation2);
-//
-//        List<Donation> actualDonations = service.getByPhoneNumber("5551234567");
-//
-//
-//        Assertions.assertEquals(expectedDonations, actualDonations);
-//
-//    }
+    @Test
+    void getDonationsByPhoneNumberTestSuccess() throws DonationNotFoundException {
+        doReturn(Arrays.asList(donation, donation2)).when(repo).findByDonorPhoneNumber("5551234567");
+
+        List<Donation> expectedDonations = new ArrayList<>();
+        expectedDonations.add(donation);
+        expectedDonations.add(donation2);
+
+        List<Donation> actualDonations = service.findByDonorPhoneNumber("5551234567");
+
+
+        Assertions.assertEquals(expectedDonations, actualDonations);
+
+    }
 
     @Test
     void create() {

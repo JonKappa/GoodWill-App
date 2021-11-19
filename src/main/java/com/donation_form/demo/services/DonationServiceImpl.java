@@ -22,20 +22,19 @@ public class DonationServiceImpl implements DonationService {
     }
 
 
-//    @Override
-//    public List<Donation> getByPhoneNumber(String phoneNumber) throws DonationNotFoundException {
-////        if (phoneNumber.contains("-")) {
-////            phoneNumber = phoneNumber.replaceAll("-", "");
-////        }
-////        Optional<List<Donation>> donations = repo.findByPhoneNumber(phoneNumber);
-////
-////        if (donations.isEmpty()) {
-////            logger.error("donation could not be retrieved because phoneNumber {} does not exist", phoneNumber);
-////            throw new DonationNotFoundException();
-////        }
-////        return donations.get();
-//        return  null;
-//    }
+    @Override
+    public List<Donation> findByDonorPhoneNumber(String phoneNumber) throws DonationNotFoundException {
+        if (phoneNumber.contains("-")) {
+            phoneNumber = phoneNumber.replaceAll("-", "");
+        }
+        List<Donation> donations = repo.findByDonorPhoneNumber(phoneNumber);
+
+        if (donations.isEmpty()) {
+            logger.error("donation could not be retrieved because phoneNumber {} does not exist", phoneNumber);
+            throw new DonationNotFoundException();
+        }
+        return donations;
+    }
 
     @Override
     public Donation create(Donation donation) {

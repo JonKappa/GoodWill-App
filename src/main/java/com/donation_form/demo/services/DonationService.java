@@ -6,7 +6,7 @@ import com.donation_form.demo.models.Donation;
 import java.util.List;
 
 public interface DonationService {
-//    List<Donation> getByPhoneNumber(String phoneNumber) throws DonationNotFoundException;
+    List<Donation> findByDonorPhoneNumber(String phoneNumber) throws DonationNotFoundException;
     Donation create(Donation donation);
     Donation getById(Integer Id) throws DonationNotFoundException;
 }
